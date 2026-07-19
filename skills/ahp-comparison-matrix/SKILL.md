@@ -42,11 +42,15 @@ The rendered result should look like this:
 
 > **Pair 3/10 — Photography vs. Newcomer clarity**
 >
-> 1. Photography **much** more important
-> 2. Photography more important
+> 1. Photography **much** more important than newcomer clarity
+> 2. Photography more important than newcomer clarity
 > 3. About the same
-> 4. Newcomer clarity more important
-> 5. Newcomer clarity **much** more important
+> 4. Newcomer clarity more important than photography
+> 5. Newcomer clarity **much** more important than photography
+
+**Every option must name both criteria and read as a complete sentence.** "Photography more
+important" forces the reader to hold the other half of the comparison in their head; by
+pair 7 they no longer reliably can. Only option 3 may be short.
 
 Values: 1→10, 2→5, 3→1, 4→0.2, 5→0.1 (from the row criterion's perspective).
 

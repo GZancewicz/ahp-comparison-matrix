@@ -3,6 +3,12 @@
 Versions follow [semver](https://semver.org/): breaking changes to the method or output
 shape bump major, new capability bumps minor, corrections bump patch.
 
+## 1.3.2
+
+- Every option now names both criteria and reads as a complete sentence ("Photography more
+  important than newcomer clarity"). The short form made the reader hold half the
+  comparison in their head, which stops working several pairs in
+
 ## 1.3.1
 
 - Comparison prompts render as ordinary prose and a markdown list, not inside a code block.
