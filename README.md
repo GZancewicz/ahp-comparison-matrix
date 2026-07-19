@@ -102,7 +102,7 @@ ask which of the three to revisit.
 
 ### 5. Weights
 
-The matrix, both calculations, and a flag on anything worth a second look.
+The matrix, the weights, and a flag on anything worth a second look.
 
 > Price 55.7% · Commute 34.7% · Space 4.9% · Natural light 4.7%
 >
