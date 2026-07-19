@@ -25,8 +25,6 @@ Criteria are grouped into clusters (max 5 per matrix). Claude asks you about eac
 Answers map to a 1/5/10 scale. The reciprocal is filled in automatically, so you're never
 asked the same pair twice. Row sums are normalized to 100%.
 
-Claude reports two sets of weights — raw-sum and column-normalized — because the choice
-materially changes the answer, and you should see it rather than inherit it silently.
 Intransitive answers (A > B > C > A) are named rather than quietly averaged away.
 
 ## What a session looks like
@@ -144,26 +142,6 @@ Divide each row sum by the total:
 | Space | 2.3 / 46.7 | **4.9%** |
 | Natural light | 2.2 / 46.7 | **4.7%** |
 | | | 100.0% |
-
-### The second method
-
-Normalize each column to sum to 1, then average across each row. Same matrix, different
-arithmetic:
-
-| Criterion | Raw sum | Column-normalized |
-|---|---|---|
-| Price | 55.7% | 63.8% |
-| Commute | 34.7% | 26.3% |
-| Space | 4.9% | 5.2% |
-| Natural light | 4.7% | 4.8% |
-
-Note the top two: an 8-point swing on Price and an 8-point swing on Commute, from
-identical judgments. Neither method is wrong — column-normalized is closer to textbook
-AHP, raw-sum is simpler to explain to people who have to accept the result. The skill
-reports both so the choice is visible rather than buried.
-
-The bottom two barely move. That's typical: the methods diverge most where it matters
-most.
 
 ## Install
 

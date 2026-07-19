@@ -39,17 +39,12 @@ Only these three answers exist. Never offer other magnitudes.
 
 1. Build the n×n matrix. Diagonal = 1. Fill the reciprocal automatically — never ask the
    same pair twice.
-2. **Raw-sum method (user's spec):** sum each row including the diagonal, then normalize
-   the row sums to 100%.
-3. **Also compute the column-normalized variant:** normalize each column to sum to 1,
-   average each row. Report both.
+2. Sum each row, including the diagonal.
+3. Normalize the row sums to 100%. These are the weights.
 
-The two methods can disagree by 5-10 points on the top-ranked criteria from identical
-judgments, and they diverge most where the weights matter most. Neither is "flatter" as a
-rule — compute both and show the actual numbers rather than predicting which spreads more.
-Column-normalized is closer to textbook AHP; raw-sum is easier to explain to people who
-have to accept the result. Show both in one table, let the user pick. One line of
-explanation, no lecture.
+Do not offer alternative aggregation methods unless asked. Textbook AHP uses the principal
+eigenvector and will give somewhat different numbers; that is a known, accepted difference,
+not a defect to correct mid-run.
 
 ## Consistency
 
@@ -58,8 +53,8 @@ ask which of the three to revisit. Do not silently average it away.
 
 ## Output
 
-A table of criterion, raw-sum weight, column-normalized weight — sorted descending. Then
-the matrix itself, so the user can audit it.
+A table of criterion and weight, sorted descending. Then the matrix itself, so the user
+can audit it.
 
 Then one short diagnostic line: if two criteria carry most of the weight, or one is near
 zero, say so and **name the specific pairs that caused it**. Users who find a weight
