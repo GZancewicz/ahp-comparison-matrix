@@ -1,6 +1,6 @@
 ---
-name: pairwise-weights
-description: Derive criterion weights from user pairwise comparisons using a 1/5/10 scale with reciprocal fill, row sums, and normalization to 100%. Use when weighting scoring criteria, building a rubric, or the user asks for pairwise comparison / AHP-style weights.
+name: ahp-comparison-matrix
+description: Build an AHP comparison matrix — derive criterion weights from pairwise comparisons on a 1/5/10 scale with reciprocal fill, row sums, and normalization to 100%, then optionally score options against those weights. Use when weighting scoring criteria, building a rubric or decision matrix, prioritizing requirements, or the user asks for AHP / pairwise comparison / a prioritization matrix.
 ---
 
 # Pairwise comparison weights

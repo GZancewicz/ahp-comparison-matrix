@@ -1,4 +1,4 @@
-# pairwise-weights
+# AHP Comparison Matrix
 
 A Claude Code skill for turning "which of these matters more?" into defensible numeric weights.
 
@@ -7,8 +7,33 @@ websites — the hard part isn't the scoring, it's deciding how much each criter
 Guessing at percentages produces weights nobody trusts. This skill derives them from a
 series of simple two-way comparisons instead.
 
-It's a variant of the **Analytic Hierarchy Process** (AHP, Saaty 1977), simplified to a
-three-point scale.
+## History
+
+The method is the **Analytic Hierarchy Process**, developed by Thomas Saaty at the
+Wharton School in the 1970s and published as *The Analytic Hierarchy Process* (1980). Its
+central insight is that people are bad at assigning absolute weights but reliable at
+comparing two things at a time — so you collect the easy judgments and let the arithmetic
+produce the hard ones.
+
+AHP spread well beyond decision theory. It entered quality practice as the
+**prioritization matrix**, one of the Seven Management and Planning Tools, where the
+rigorous variant is still called the "full analytical criteria method." That is the route
+by which most people meet it: not in a textbook, but in a Six Sigma or TQM course,
+condensed to a few pages in a pocket handbook. The GOAL/QPC *Memory Jogger* series is the
+most likely such book, though several publishers produced near-identical versions.
+
+This skill is that handbook version, not the textbook one. Two deliberate simplifications:
+
+| | Textbook AHP | This skill |
+|---|---|---|
+| Scale | 1–9 (nine gradations) | 1 / 5 / 10 (three) |
+| Weights from | Principal eigenvector | Row sums, normalized |
+
+Saaty's nine-point scale asks people to distinguish "moderately more important" from
+"moderately-to-strongly more important." In practice that precision is illusory — the
+three-point version loses very little and finishes in a third of the time. The row-sum
+normalization is the classic hand-calculation shortcut, which is why it survived into
+pocket-handbook form: you can do it without a computer.
 
 ## How it works
 
@@ -146,8 +171,8 @@ Divide each row sum by the total:
 ## Install
 
 ```
-/plugin marketplace add GZancewicz/pairwise-weights
-/plugin install pairwise-weights@GZancewicz
+/plugin marketplace add GZancewicz/ahp-comparison-matrix
+/plugin install ahp-comparison-matrix@GZancewicz
 ```
 
 ## Use
@@ -156,7 +181,7 @@ Just describe the problem:
 
 > Help me weight these criteria for evaluating job candidates.
 
-Or invoke it directly with `/pairwise-weights`.
+Or invoke it directly with `/ahp-comparison-matrix`.
 
 ## Letting Claude do the comparisons
 
