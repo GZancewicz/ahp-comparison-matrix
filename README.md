@@ -81,6 +81,34 @@ asked the same pair twice. Row sums are normalized to 100%.
 
 Intransitive answers (A > B > C > A) are named rather than quietly averaged away.
 
+## Why a Claude plugin?
+
+AHP is arithmetic. It has lived in spreadsheets for forty years, and a spreadsheet does the
+math perfectly well. What a spreadsheet doesn't do is the part people actually get wrong.
+
+**It runs the interview.** The method's weak point isn't the calculation, it's that most
+people never finish the comparisons — they open the template, see thirty empty cells, and
+assign percentages by feel instead. Being asked one question at a time, with a running
+count, is the difference between a completed matrix and an abandoned one.
+
+**It stops you from comparing moving targets.** The most common source of inconsistent
+results is your understanding of a criterion drifting halfway through. The skill pins down
+every definition before the first pair and holds you to it.
+
+**It fills in the reciprocals.** You answer six questions; twelve cells get populated. No
+transcription errors, no accidentally answering the same pair twice with different values.
+
+**It can score the options too.** This is the real advantage over a template. Deciding what
+matters is yours, but judging how well each option delivers it is research — reading docs,
+running benchmarks, crawling sites. Claude does that half and synthesizes both levels into
+a ranking. A spreadsheet can only take numbers you already have.
+
+**It argues with the result.** When a weight looks wrong, it names the specific comparison
+that caused it rather than leaving you to reverse-engineer your own matrix.
+
+And packaged as a plugin rather than a loose `SKILL.md`, it's versioned, installs in two
+commands, and updates everywhere at once instead of drifting across copies.
+
 ## What a session looks like
 
 The skill runs in five stages. You only ever answer one question at a time.
