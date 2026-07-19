@@ -1,0 +1,13 @@
+{
+  "name": "GZancewicz",
+  "owner": {
+    "name": "Greg Zancewicz"
+  },
+  "plugins": [
+    {
+      "name": "ahp-comparison-matrix",
+      "source": "./",
+      "description": "Derive criterion weights from pairwise comparisons (AHP-style) on a 1/5/10 scale, then score options against them for a weighted ranking."
+    }
+  ]
+}
