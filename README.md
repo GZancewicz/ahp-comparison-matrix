@@ -55,7 +55,8 @@ inconsistent answers is your understanding of a criterion drifting mid-run.
 
 ### 3. Comparisons
 
-One pair per question, same five options every time, with a running count.
+One pair per question, the same five options every time, with a running count. Every
+answer becomes one raw value, and its reciprocal is filled in for free.
 
 > **Pair 1/6 — Which matters more: Price or Commute?**
 > - About the same
@@ -64,12 +65,32 @@ One pair per question, same five options every time, with a running count.
 > - Commute more
 > - *(Other → "Commute much more")*
 
-You answer `Price more`. Claude records 5, fills the reciprocal 0.2 automatically, and
-moves on. It never asks Commute-vs-Price — that answer already exists.
+**You answer: `Price more`** → records `Price:Commute = 5`, and `Commute:Price = 0.2`
 
 > **Pair 2/6 — Which matters more: Price or Space?**
+> - About the same · Price more · Price much more · Space more · *(Other → "Space much more")*
 
-...and so on through pair 6. No re-explaining the scale, no commentary between questions.
+**You answer: `Price much more`** → records `Price:Space = 10`, and `Space:Price = 0.1`
+
+> **Pair 3/6 — Which matters more: Price or Natural light?**
+
+**You answer: `Price much more`** → records `Price:Light = 10`, and `Light:Price = 0.1`
+
+> **Pair 4/6 — Which matters more: Commute or Space?**
+
+**You answer: `Commute more`** → records `Commute:Space = 5`, and `Space:Commute = 0.2`
+
+> **Pair 5/6 — Which matters more: Commute or Natural light?**
+
+**You answer: `Commute much more`** → records `Commute:Light = 10`, and `Light:Commute = 0.1`
+
+> **Pair 6/6 — Which matters more: Space or Natural light?**
+
+**You answer: `About the same`** → records `Space:Light = 1`, and `Light:Space = 1`
+
+Six questions, twelve values. Claude never asks Commute-vs-Price after asking
+Price-vs-Commute — that cell is already known. No re-explaining the scale between
+questions, no commentary.
 
 ### 4. Consistency
 
@@ -97,18 +118,7 @@ you re-derive it.
 
 ## Worked example
 
-Four criteria for choosing an apartment: **Price**, **Commute**, **Space**, **Natural light**.
-
-Six pairs, six answers:
-
-| Pair | Answer | Value |
-|---|---|---|
-| Price vs Commute | Price more | 5 |
-| Price vs Space | Price much more | 10 |
-| Price vs Natural light | Price much more | 10 |
-| Commute vs Space | Commute more | 5 |
-| Commute vs Natural light | Commute much more | 10 |
-| Space vs Natural light | About the same | 1 |
+The six answers above, worked through to weights.
 
 ### The matrix
 
