@@ -95,7 +95,7 @@ installs update with one command, everywhere.
 diverge, with no way to tell which is current. Fix the bug in the wrong copy and you'll
 spend an afternoon confused.
 
-**Versioning.** `1.1.0` in the manifest. You can pin, upgrade deliberately, and roll back.
+**Versioning.** A version string in the manifest. You can pin, upgrade deliberately, and roll back.
 A copied file has no version and no history.
 
 **Real installation.** "Clone this repo and move the folder to the right path" loses most
@@ -320,6 +320,23 @@ A few opinions are baked in, learned the hard way:
   ambiguity about importance.
 - **Every weighted criterion must be scorable on every item.** A criterion you can only
   assess on some of the corpus corrupts the ranking, no matter how well-weighted.
+
+## Versioning
+
+The version lives in one place: `version` in
+[`.claude-plugin/plugin.json`](.claude-plugin/plugin.json). It's what `claude plugin list`
+reports and what an install pins to.
+
+Convention for changes:
+
+| Change | Bump | Example |
+|---|---|---|
+| Method or output shape changes | major | dropping a calculation method |
+| New capability | minor | adding option scoring |
+| Correction, doc fix | patch | fixing a broken manifest |
+
+Every version bump gets a matching git tag and a [CHANGELOG](CHANGELOG.md) entry, so a
+specific version can be fetched from the repo rather than only from the plugin cache.
 
 ## License
 
