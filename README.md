@@ -26,6 +26,21 @@ final ranking.
 /plugin install ahp-comparison-matrix@GZancewicz
 ```
 
+## Updating
+
+```
+claude plugin marketplace update GZancewicz
+claude plugin update ahp-comparison-matrix@GZancewicz
+```
+
+Restart Claude Code to apply. Three things that trip people up:
+
+- The `@GZancewicz` suffix is required — a bare plugin name reports "not found".
+- User and project scopes update independently. Check `claude plugin list`; if it's
+  installed at both, update both.
+- `--scope project` resolves against your current directory, so run it from inside the
+  project that declares the plugin.
+
 ## Use
 
 Just describe the problem:
