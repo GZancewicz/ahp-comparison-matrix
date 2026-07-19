@@ -44,9 +44,12 @@ Only these three answers exist. Never offer other magnitudes.
 3. **Also compute the column-normalized variant:** normalize each column to sum to 1,
    average each row. Report both.
 
-Raw-sum exaggerates spread — a criterion winning every pair lands near 60%, one losing
-every pair near 2%. Column-normalized is flatter. Show both, one table, let the user pick.
-State the difference in one line; do not lecture.
+The two methods can disagree by 5-10 points on the top-ranked criteria from identical
+judgments, and they diverge most where the weights matter most. Neither is "flatter" as a
+rule — compute both and show the actual numbers rather than predicting which spreads more.
+Column-normalized is closer to textbook AHP; raw-sum is easier to explain to people who
+have to accept the result. Show both in one table, let the user pick. One line of
+explanation, no lecture.
 
 ## Consistency
 
