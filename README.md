@@ -26,21 +26,6 @@ final ranking.
 /plugin install ahp-comparison-matrix@GZancewicz
 ```
 
-## Updating
-
-```
-claude plugin marketplace update GZancewicz
-claude plugin update ahp-comparison-matrix@GZancewicz
-```
-
-Restart Claude Code to apply. Three things that trip people up:
-
-- The `@GZancewicz` suffix is required — a bare plugin name reports "not found".
-- User and project scopes update independently. Check `claude plugin list`; if it's
-  installed at both, update both.
-- `--scope project` resolves against your current directory, so run it from inside the
-  project that declares the plugin.
-
 ## Use
 
 Just describe the problem:
@@ -352,6 +337,21 @@ Convention for changes:
 
 Every version bump gets a matching git tag and a [CHANGELOG](CHANGELOG.md) entry, so a
 specific version can be fetched from the repo rather than only from the plugin cache.
+
+## Updating
+
+```
+claude plugin marketplace update GZancewicz
+claude plugin update ahp-comparison-matrix@GZancewicz
+```
+
+Restart Claude Code to apply. Three things that trip people up:
+
+- The `@GZancewicz` suffix is required — a bare plugin name reports "not found".
+- User and project scopes update independently. Check `claude plugin list`; if it's
+  installed at both, update both.
+- `--scope project` resolves against your current directory, so run it from inside the
+  project that declares the plugin.
 
 ## License
 
