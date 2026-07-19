@@ -81,33 +81,37 @@ asked the same pair twice. Row sums are normalized to 100%.
 
 Intransitive answers (A > B > C > A) are named rather than quietly averaged away.
 
-## Why a Claude plugin?
+## Why a plugin instead of just a SKILL.md?
 
-AHP is arithmetic. It has lived in spreadsheets for forty years, and a spreadsheet does the
-math perfectly well. What a spreadsheet doesn't do is the part people actually get wrong.
+The whole method is one Markdown file. You could paste it into
+`~/.claude/skills/ahp/SKILL.md` and it would work identically. Packaging it as a plugin
+buys five things that a copied file can't give you:
 
-**It runs the interview.** The method's weak point isn't the calculation, it's that most
-people never finish the comparisons — they open the template, see thirty empty cells, and
-assign percentages by feel instead. Being asked one question at a time, with a running
-count, is the difference between a completed matrix and an abandoned one.
+**Updates instead of drift.** A copied file is frozen at the moment it was copied. When the
+skill is corrected — and this one already has been, twice — every copy stays wrong. Plugin
+installs update with one command, everywhere.
 
-**It stops you from comparing moving targets.** The most common source of inconsistent
-results is your understanding of a criterion drifting halfway through. The skill pins down
-every definition before the first pair and holds you to it.
+**One source of truth.** Use it across five projects and you have five files that slowly
+diverge, with no way to tell which is current. Fix the bug in the wrong copy and you'll
+spend an afternoon confused.
 
-**It fills in the reciprocals.** You answer six questions; twelve cells get populated. No
-transcription errors, no accidentally answering the same pair twice with different values.
+**Versioning.** `1.1.0` in the manifest. You can pin, upgrade deliberately, and roll back.
+A copied file has no version and no history.
 
-**It can score the options too.** This is the real advantage over a template. Deciding what
-matters is yours, but judging how well each option delivers it is research — reading docs,
-running benchmarks, crawling sites. Claude does that half and synthesizes both levels into
-a ranking. A spreadsheet can only take numbers you already have.
+**Real installation.** "Clone this repo and move the folder to the right path" loses most
+people. `/plugin marketplace add` and `/plugin install` don't.
 
-**It argues with the result.** When a weight looks wrong, it names the specific comparison
-that caused it rather than leaving you to reverse-engineer your own matrix.
+**It's declared, not tribal.** `.claude/settings.json` lists the plugin, so a teammate
+cloning the project gets prompted to install it. A skill file living in someone's home
+directory is invisible to everyone else — the project silently depends on something no
+one else has.
 
-And packaged as a plugin rather than a loose `SKILL.md`, it's versioned, installs in two
-commands, and updates everywhere at once instead of drifting across copies.
+There's also headroom: if this later needs a slash command, a subagent, a hook, or an MCP
+server, a plugin carries all of them. A skills directory only carries skills.
+
+**When a plain file is genuinely better:** you're the only user, in one project, and you
+expect to edit it often. Then the install step is overhead with nothing to show for it.
+Put it in `.claude/skills/` and move on.
 
 ## What a session looks like
 
