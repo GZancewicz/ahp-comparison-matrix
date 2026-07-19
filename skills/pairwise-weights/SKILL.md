@@ -17,8 +17,10 @@ Only these three answers exist. Never offer other magnitudes.
 
 ## Asking
 
-- Group criteria into clusters first. Cap at 5 clusters per matrix (10 pairs). More than
-  that and judgment degrades.
+- Group criteria into clusters first. **Around 5 per matrix is the sweet spot** (10 pairs).
+  Pairs grow quadratically, and answers get noticeably less considered past roughly ten
+  questions. This is guidance, not a hard limit — if the user wants 7 or 8, run it, but
+  say once that consistency usually suffers and offer to cluster instead.
 - Define every cluster in plain language **before** the first pair. Name, what it covers,
   what high and low look like. One short block each.
 - Ask **one pair per question**. The scale needs 5 answers but the question UI caps at 4
@@ -62,6 +64,38 @@ surprising need to know which comparison to revisit, not to redo the whole run.
 
 Weights apply only within their own matrix. Never merge two matrices or average across
 them without the user asking.
+
+## Scoring options against the weights
+
+Weights alone don't choose anything. When the user has options to rank, run a second
+level and synthesize.
+
+**Who answers which matrix:**
+
+- **Criteria matrix — always the user.** What matters is a values question. Never fill it
+  in on their behalf, and never infer it from the project.
+- **Option matrices — you, once you have real context.** How well each option delivers a
+  criterion is a factual question. Comparing two frameworks on load time or two sites on
+  photography is research, not preference. Do not make the user answer 10 pairs per
+  criterion.
+
+**Procedure:**
+
+1. For each criterion, pairwise-compare all options on that criterion alone. Same 1/5/10
+   scale, same reciprocal fill. Produces a local weight per option, summing to 100%
+   within that criterion.
+2. Synthesis: `option score = Σ (criterion weight × option's local weight)`. Scores across
+   all options sum to 100%.
+3. Report the full ranking, not just the winner.
+
+**Ground every option judgment in evidence you actually have** — a measurement, a page you
+read, a doc you checked. If you're comparing options you haven't investigated, say so and
+go investigate first. A confidently fabricated option matrix is worse than no ranking,
+because the arithmetic makes it look rigorous.
+
+Call out any option that dominates one criterion and still ranks low. That is usually the
+most informative line in the output, and it points at a criterion weight the user may want
+to revisit.
 
 ## Rule
 

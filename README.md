@@ -12,7 +12,7 @@ three-point scale.
 
 ## How it works
 
-Criteria are grouped into clusters (max 5 per matrix). Claude asks you about each pair:
+Criteria are grouped into clusters — around five works best. Claude asks you about each pair:
 
 > Which matters more: **Photography & visual identity** or **Mobile & performance**?
 >
@@ -158,12 +158,92 @@ Just describe the problem:
 
 Or invoke it directly with `/pairwise-weights`.
 
+## Letting Claude do the comparisons
+
+The weights above answer *what matters*. They don't pick anything. The second half of the
+method scores actual options against those weights — and here Claude can run the pairwise
+itself, because comparing two static site generators on mobile performance is a factual
+question, not a values question.
+
+The division of labor:
+
+- **You** decide what matters. Nobody can outsource that.
+- **Claude** decides how well each option delivers it, once it has enough context —
+  it has crawled the sites, read the docs, run the benchmarks.
+
+### Step 1 — You weight the criteria (3×3)
+
+Three criteria for a parish website. Three pairs, three answers.
+
+> **Pair 1/3 — Newcomer clarity or Mobile & performance?** → `Newcomer clarity more` = 5
+> **Pair 2/3 — Newcomer clarity or Content depth?** → `Newcomer clarity much more` = 10
+> **Pair 3/3 — Mobile & performance or Content depth?** → `Mobile more` = 5
+
+|  | Clarity | Mobile | Depth | Row sum | **Weight** |
+|---|---|---|---|---|---|
+| **Newcomer clarity** | 1 | 5 | 10 | 16.0 | **68.1%** |
+| **Mobile & performance** | 0.2 | 1 | 5 | 6.2 | **26.4%** |
+| **Content depth** | 0.1 | 0.2 | 1 | 1.3 | **5.5%** |
+| | | | | 23.5 | 100.0% |
+
+### Step 2 — Claude compares the options, one criterion at a time
+
+Five ways to build the site: **Squarespace**, **WordPress**, **Astro**, **Wix**,
+**Custom build**. Claude runs the same 1/5/10 pairwise — ten pairs per criterion, thirty
+total — and you never answer any of them.
+
+Here is the full matrix for the first criterion, **Newcomer clarity**:
+
+|  | Squarespace | WordPress | Astro | Wix | Custom | Row sum | **Local weight** |
+|---|---|---|---|---|---|---|---|
+| **Squarespace** | 1 | 5 | 1 | 5 | 0.2 | 12.2 | **20.2%** |
+| **WordPress** | 0.2 | 1 | 0.2 | 1 | 0.1 | 2.5 | **4.1%** |
+| **Astro** | 1 | 5 | 1 | 5 | 0.2 | 12.2 | **20.2%** |
+| **Wix** | 0.2 | 1 | 0.2 | 1 | 0.1 | 2.5 | **4.1%** |
+| **Custom build** | 5 | 10 | 5 | 10 | 1 | 31.0 | **51.3%** |
+| | | | | | | 60.4 | 100.0% |
+
+Two more matrices, same shape, produce the other two columns:
+
+| Option | Clarity | Mobile | Depth |
+|---|---|---|---|
+| Squarespace | 20.2% | 17.9% | 8.9% |
+| WordPress | 4.1% | 3.9% | 42.2% |
+| Astro | 20.2% | 48.7% | 23.4% |
+| Wix | 4.1% | 3.9% | 2.0% |
+| Custom build | 51.3% | 25.5% | 23.4% |
+
+Each column sums to 100% — it ranks the options *within* that one criterion.
+
+### Step 3 — Synthesis
+
+Multiply each option's local weight by its criterion weight and add:
+
+```
+Custom build = (0.513 × 68.1%) + (0.255 × 26.4%) + (0.234 × 5.5%) = 43.0%
+```
+
+| Option | Weighted score |
+|---|---|
+| **Custom build** | **43.0%** |
+| Astro | 27.9% |
+| Squarespace | 19.0% |
+| WordPress | 6.2% |
+| Wix | 4.0% |
+| | 100.0% |
+
+Read the losers, not just the winner. **WordPress dominates content depth at 42.2% and
+still finishes fourth** — because you weighted depth at 5.5%. That isn't a flaw in the
+result; it's the result telling you what your own weights imply. If fourth place for
+WordPress feels wrong, the thing to revisit is pair 2, not the scoring.
+
 ## Design notes
 
 A few opinions are baked in, learned the hard way:
 
-- **Five clusters maximum.** Ten pairs is about where careful judgment stops. Twenty
-  criteria means 190 comparisons and the back half is noise.
+- **Around five criteria is the sweet spot.** Not a hard limit — but pairs grow
+  quadratically (4 criteria = 6 questions, 8 = 28, 20 = 190), and answers get visibly less
+  considered past roughly ten questions. Cluster first, then compare.
 - **Define the criteria before the first pair.** Most inconsistent results come from the
   user's understanding of a criterion shifting halfway through, not from genuine
   ambiguity about importance.
